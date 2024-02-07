@@ -170,25 +170,33 @@ for (let i = 0; i < arr8.length; i++) {
 
 
 // 9 Unique color shirt......
-let arr9 = [3, 2, 4, 1, 2, 3];
-let uniqueValue = [];
-let count9 = 0;
+let arr9 = [3, 2, 4, 1, 2, 3, 3];
+let uniqueNumbers = [];
+let nonRepeatingNumbers = [];
+const ocuurence = {};
 
-arr9.map((x) => {
-    if (!uniqueValue.includes(x)) {
-        uniqueValue.push(x)
+arr9.forEach(num => {
+    if (ocuurence[num] === undefined) {
+        ocuurence[num] = 1;
+        uniqueNumbers.push(num)
+    } else {
+        ocuurence[num]++;
+        const index = uniqueNumbers.indexOf(num);
+        if (index !== -1)//This is because if indexOf() found nothing then it returns -1, so this loop will not run if not found the index. 
+        {
+            uniqueNumbers.splice(index, 1);
+        }
     }
-    else {
-        count9 = count9 + 2;
+})
+//uniqueNumbers = [4,1]
+//occurence = {3:3, 2:2, 4:1, 1:1}
+uniqueNumbers.forEach(num => {
+    if (ocuurence[num] === 1) {
+        nonRepeatingNumbers.push(num)
     }
-}
-) 
-console.log(count9);  //It gives count of duplicate values.
-console.log(uniqueValue);  //It gives array of unique values.
-console.log(arr9.length - count9);  //It subtracts array length to count9 to give result of unique values in the main array.
-
-
-
+})
+console.log(nonRepeatingNumbers);
+console.log(nonRepeatingNumbers.length);
 
 
 
